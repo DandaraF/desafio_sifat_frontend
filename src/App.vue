@@ -1,14 +1,23 @@
 <template>
-  <Header/>
+  <div id="app">
+    <!-- <Card/> -->
+    <HeaderComponent/>
+  </div>
+  
 </template>
 
 <script>
 import './styles/global.css'
-import Header from './components/Header.vue'
+// import Card from './components/Card.vue'
+// import FooterComponent from './components/Footer.vue'
+import HeaderComponent from './components/Header.vue'
 export default {
+  
   name: 'App',
   components: {
-    Header
+    // Card,
+    // FooterComponent
+    HeaderComponent
   }
 }
 </script>

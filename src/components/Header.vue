@@ -1,37 +1,43 @@
 <template>
-<header>
-  <nav><img src="../assets/images/menu.png"  class="menu" alt="menu"/></nav>
-</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand logo-site" href="#">Fon Blog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto menu">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Sobre</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
 </template>
 
 <script>
 
 export default {
-  name:'Header'
+  name:'HeaderComponent'
 }
 
 </script>
 
 <style scoped>
 
-header{
-  /* background-color: var(--color-background-nav); */
-  background-color: red;
-  height: 77px;
-  width: 100%;
+.navbar{
+  padding:10px;
+}
+
+.menu{
   display: flex;
   justify-content: right;
-  align-items: center;
+  width: 100%;
+}
 
-}
-nav{
-  display: flex;
-  justify-content: space-ri;
-  height: 40px;
-  align-items: center;
-}
-.menu{
-  padding-right: 10px;
-}
+
 
 </style>
