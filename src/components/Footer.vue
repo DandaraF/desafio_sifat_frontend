@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'FooterComponent',
+  name: 'Footer',
   data() {
     return {
       year: '2022'

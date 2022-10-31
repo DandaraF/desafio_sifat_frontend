@@ -7,10 +7,11 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto menu">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <router-link to="/" class="nav-link"> Home</router-link>
+        <!-- <a class="nav-link" href="/">Home</a> -->
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sobre</a>
+        <a class="nav-link" href="/detalhes">Sobre</a>
       </li>
     </ul>
 
@@ -21,7 +22,7 @@
 <script>
 
 export default {
-  name:'HeaderComponent'
+  name:'Header'
 }
 
 </script>
@@ -30,6 +31,7 @@ export default {
 
 .navbar{
   padding:10px;
+  background-color: var(--color-background-nav);
 }
 
 .menu{
