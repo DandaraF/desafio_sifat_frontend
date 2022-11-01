@@ -10,7 +10,7 @@
                   <div class="clearfix mb-3 "> 
                     <span class="float-left price-hp data_create">{{ postagem.data_criacao }}</span> 
                     <div id="likes">
-                      <img src="../assets/images/like.png" class="image-like-post"  alt="curtir"  > 
+                      <img @click="atualizar_curtidas(postagem)" src="../assets/images/like.png" class="image-like-post"  alt="curtir"  > 
                       {{ postagem.curtidas }}
                       
                     </div>
@@ -45,7 +45,7 @@ export default {
         imagem : '',
         categoria : '',
         data_criacao : null,
-        curtidas: 0
+        curtidas: null
       },
       postagens: []
     }
@@ -58,9 +58,12 @@ export default {
       api.get_all().then(response => {
         this.postagens = response.data
       })
+    },
+    atualizar_curtidas(postagem) {
+      postagem.curtidas = postagem.curtidas + 1
+      api.put(postagem).then(() => {
+       })
     }
-       
-    
   }
 }
 
@@ -71,6 +74,7 @@ export default {
 
 .image-like-post{
   height: 22px;
+  cursor: pointer;
 }
 
 .data_create{
