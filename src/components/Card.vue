@@ -2,9 +2,9 @@
   <main>
    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-        <div v-for="postagem in postagens" class="col card-info">
+        <div v-for="postagem in postagens" class="col card-info" >
             <div class="card h-100 shadow-sm">
-               <img :src="postagem.imagem" class="card-img-top" alt="imagem postagem"> 
+               <img @click="$router.push('detalhes')" :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
                <div class="card-body">
 
                   <div class="clearfix mb-3 "> 
@@ -17,10 +17,7 @@
                   </div>
 
                   <h5 class="card-title">{{ postagem.titulo }}</h5>
-                  <p class="card-text"> {{ postagem.texto }}</p>
-                  <div class="text-center my-4 session-more-info">
-                    <button @click="$router.push('detalhes')" class="btn-more-info">Mais informações </button>
-                   </div>
+                  <p @click="$router.push('detalhes')" class="card-text" > {{ postagem.texto }}</p>
                </div>
             </div>
          </div>
@@ -71,7 +68,6 @@ export default {
 
 <style scoped>
 
-
 .image-like-post{
   height: 22px;
   cursor: pointer;
@@ -86,24 +82,13 @@ export default {
 }
 .card-text{
   color: var(--color-text-dark);
+  cursor: pointer;
 }
 
 .card-img-top{
   max-height: 400px;
   object-fit: cover;
-  
-}
-
-.btn-more-info{
-  border-radius: 6px;
-  padding: 3px;
-  background-color: var(--color-background-button);
-  color: var(--color-text-light);
-  border: 2px solid var(--color-background-button);
-}
-.btn-more-info:hover{
-  transition-duration: 0.4s;
-  opacity: 0.8;
+  cursor: pointer;
 }
 
 .clearfix{

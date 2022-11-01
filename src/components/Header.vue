@@ -8,7 +8,6 @@
     <ul class="navbar-nav mr-auto menu">
       <li class="nav-item active">
         <router-link to="/" class="nav-link"> Home</router-link>
-        <!-- <a class="nav-link" href="/">Home</a> -->
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/detalhes">Sobre</a>
