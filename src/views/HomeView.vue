@@ -1,5 +1,8 @@
 <template>  
+<main>
   <Card/>
+
+</main>
 </template>
 
 <script>
@@ -14,3 +17,11 @@ export default {
 }
 
 </script>
+
+<style scoped> 
+main{
+  display: flex;
+  justify-content: center;
+  padding: 0 10px ;
+}
+</style>

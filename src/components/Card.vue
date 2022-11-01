@@ -1,9 +1,10 @@
 <template>
-  <main>
+  <main >
    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
         <div v-for="postagem in postagens" class="col card-info" >
             <div class="card h-100 shadow-sm">
+              
                <img @click="$router.push('detalhes')" :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
                <div class="card-body">
 
@@ -12,10 +13,9 @@
                     <div id="likes">
                       <img @click="atualizar_curtidas(postagem)" src="../assets/images/like.png" class="image-like-post"  alt="curtir"  > 
                       {{ postagem.curtidas }}
-                      
                     </div>
                   </div>
-
+                  <p class="category">{{ postagem.categoria }}</p>
                   <h5 class="card-title">{{ postagem.titulo }}</h5>
                   <p @click="$router.push('detalhes')" class="card-text" > {{ postagem.texto }}</p>
                </div>
@@ -81,12 +81,12 @@ export default {
   color: var(--color-text-title);
 }
 .card-text{
-  color: var(--color-text-dark);
+  color: var(--color-text-normal);
   cursor: pointer;
 }
 
 .card-img-top{
-  max-height: 400px;
+  max-height: 250px;
   object-fit: cover;
   cursor: pointer;
 }
@@ -95,6 +95,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
 #likes{
   width: 50%;
   display: flex;
@@ -104,4 +105,13 @@ export default {
   color: var(--color-text-dark);
   gap:5px;
 }
+
+.category{
+  color: var(--color-text-category);
+  font-weight: 600;
+  font-style: italic;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+
 </style>
