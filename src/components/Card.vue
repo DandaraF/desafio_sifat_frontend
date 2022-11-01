@@ -1,16 +1,26 @@
 <template>
   <main>
-   <div class="container-fluid bg-trasparent my-4 p-3 card-post" style="position: relative;">
+   <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-         
-        <div class="col">
+        <div v-for="postagem in postagens" class="col card-info">
             <div class="card h-100 shadow-sm">
-               <img src="https://www.freepnglogos.com/uploads/notebook-png/download-laptop-notebook-png-image-png-image-pngimg-2.png" class="card-img-top" alt="imagem postagem"> 
+               <img :src="postagem.imagem" class="card-img-top" alt="imagem postagem"> 
                <div class="card-body">
-                  <div class="clearfix mb-3"> <span class="float-left price-hp data_create">10/2/25</span> <img class="image-like-post float-end" src="../assets/images/deslike.png"> </div>
-                  <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h5>
-                  <p class="card-text"> Veniam quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit odit ut. Saepe, iste optio laudantium sed aliquam sequi.</p>
-                  <div class="text-center my-4"> <a href="#" class="btn btn-warning">Mais informações</a> </div>
+
+                  <div class="clearfix mb-3 "> 
+                    <span class="float-left price-hp data_create">{{ postagem.data_criacao }}</span> 
+                    <div id="likes">
+                      <img src="../assets/images/like.png" class="image-like-post"  alt="curtir"  > 
+                      {{ postagem.curtidas }}
+                      
+                    </div>
+                  </div>
+
+                  <h5 class="card-title">{{ postagem.titulo }}</h5>
+                  <p class="card-text"> {{ postagem.texto }}</p>
+                  <div class="text-center my-4 session-more-info">
+                    <button @click="$router.push('detalhes')" class="btn-more-info">Mais informações </button>
+                   </div>
                </div>
             </div>
          </div>
@@ -22,8 +32,36 @@
 </template>
 
 <script>
+import api from '../services/api'
 export default {
-  name: "Card"
+  name: "Card",
+
+  data() {
+    return {
+      postagem: {
+        postagem_id: '',
+        titulo : '',
+        texto : '',
+        imagem : '',
+        categoria : '',
+        data_criacao : null,
+        curtidas: 0
+      },
+      postagens: []
+    }
+  },
+  mounted() {
+    this.listar()
+  },
+  methods: {
+    listar() {
+      api.get_all().then(response => {
+        this.postagens = response.data
+      })
+    }
+       
+    
+  }
 }
 
 </script>
@@ -32,11 +70,12 @@ export default {
 
 
 .image-like-post{
-  height: 24px;
+  height: 22px;
 }
 
 .data_create{
   color: #BEBEBE;
+  width: 50%;
 }
 .card-title{
   color: var(--color-text-title);
@@ -45,7 +84,35 @@ export default {
   color: var(--color-text-dark);
 }
 
-.button{
-  color: var(--color-background-button)
+.card-img-top{
+  max-height: 400px;
+  object-fit: cover;
+  
+}
+
+.btn-more-info{
+  border-radius: 6px;
+  padding: 3px;
+  background-color: var(--color-background-button);
+  color: var(--color-text-light);
+  border: 2px solid var(--color-background-button);
+}
+.btn-more-info:hover{
+  transition-duration: 0.4s;
+  opacity: 0.8;
+}
+
+.clearfix{
+  display: flex;
+  justify-content: space-between;
+}
+#likes{
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  font-size: 18px;
+  color: var(--color-text-dark);
+  gap:5px;
 }
 </style>
