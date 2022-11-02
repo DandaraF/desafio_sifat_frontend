@@ -1,90 +1,77 @@
 <template>
   <div class="container-related">
-    <!-- <div class="content-card-related"> -->
-      <div class="card-related">
-        <img src="https://picsum.photos/id/237/200/300" class="img-related" alt="imagem postagem" />
+      <div v-for="postagem in postagens" class="card-related" @click="irDetalhes(postagem)">
+        <img :src="postagem.imagem" class="img-related" alt="imagem postagem" />
         
-        <div class="category">Filmes</div>
+        <div class="category">{{postagem.categoria}}</div>
 
         <div class="description">
-            <p class="title">Overlord I, II, III e IV</p>
+            <p class="title">{{postagem.titulo}}</p>
 
             <div class="info">
-              <p class="info-text">24/10/2022</p>
+              <p class="info-text">{{postagem.data_criacao}}</p>
 
               <div class="likes">
-                <p class="info-text">88888449871</p>
+                <p class="info-text">{{postagem.curtidas}}</p>
                 <img src="../assets/images/like.png" class="image-like"  alt="curtir"  > 
               </div>
 
             </div>
-            <p class="text-related">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum is simply dummy text of the
-            </p>
-        </div>
-      </div>
-      <!-- --------------------- -->
-      <div class="card-related">
-        <img src="https://picsum.photos/id/237/200/300" class="img-related" alt="imagem postagem" />
-        
-        <div class="category">Filmes</div>
-
-        <div class="description">
-            <p class="title">Overlord I, II, III e IV</p>
-
-            <div class="info">
-              <p class="info-text">24/10/2022</p>
-
-              <div class="likes">
-                <p class="info-text">88888449871</p>
-                <img src="../assets/images/like.png" class="image-like"  alt="curtir"  > 
-              </div>
-
-            </div>
-            <p class="text-related">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum is simply dummy text of the
-            </p>
+            <p class="text-related">{{postagem.texto}}</p>
         </div>
       </div>
 
-      <div class="card-related">
-        <img src="https://picsum.photos/id/237/200/300" class="img-related" alt="imagem postagem" />
-        
-        <div class="category">Filmes</div>
-
-        <div class="description">
-            <p class="title">Overlord I, II, III e IV</p>
-
-            <div class="info">
-              <p class="info-text">24/10/2022</p>
-
-              <div class="likes">
-                <p class="info-text">88888449871</p>
-                <img src="../assets/images/like.png" class="image-like"  alt="curtir"  > 
-              </div>
-
-            </div>
-            <p class="text-related">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum is simply dummy text of the
-            </p>
-        <!-- </div> -->
-      </div>
-
-      <!-- ---------------------- -->
-
-    </div>
   </div>
 </template>
 
 <script>
+import api from '@/services/api';
+
 export default {
   name: "Related",
+
   data() {
-    
+    return {
+      postagem: {
+        postagem_id: '',
+        autor: '',
+        titulo : '',
+        texto : '',
+        imagem : '',
+        categoria : '',
+        data_criacao : null,
+        curtidas: null    
+      },
+      postagens: [],
+      id:'',
+      filter_field: 'categoria',
+      filter_value: ''
+
+    }
+  },
+  mounted() {
+    this.filter_value = this.$route.params.categoria
+    this.id = this.$route.params.postagem_id
+    this.listar_relacionadas()
+  },
+  methods: {
+    listar_relacionadas() {
+      api.filter(this.filter_field, this.filter_value).then((response) => {
+        this.postagens = response.data
+
+      })
+    },
+    irDetalhes(postagem) {
+      this.$router.push({
+        name: "detalhes",
+        params: {
+          postagem_id: postagem.postagem_id,
+          categoria: postagem.categoria
+        }
+      })
+    }
   }
+
 }
 
 </script>
@@ -99,14 +86,14 @@ export default {
   gap: 15px;
 }
 
-@media(max-width: 956px){
+/* @media(max-width: 956px){
   .container-related{
     grid-template-columns: 1fr 1fr;
   }
-}
+} */
 @media(max-width: 768px){
   .container-related{
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 

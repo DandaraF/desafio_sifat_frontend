@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from "../pages/HomeView.vue";
 
 const routes = [
   {
@@ -8,10 +8,10 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/detalhes",
+    path: "/detalhes/:categoria/:postagem_id",
     name: "detalhes",
     component: () =>
-      import(/* webpackChunkName: "detalhes" */ "../views/DetalhesView.vue"),
+      import(/* webpackChunkName: "detalhes" */ "../pages/DetalhesView.vue"),
   },
 ];
 
