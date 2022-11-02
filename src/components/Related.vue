@@ -52,18 +52,19 @@ export default {
         data_criacao : null,
         curtidas: null    
       },
-
+      postagens:[]
 
     }
   },
   mounted() {
     this.listar_relacionadas()
+    console.log('postagem', this.postagem)
   },
   methods: {
 
     listar_relacionadas() {
       // postagem.filter_value = postagem.categoria 
-      api.filter(this.filter_field, this.postagem.categoria).then(response => {
+      api.filter(this.filter_field, "Ação").then(response => {
         this.postagens = response.data
       })
     }
