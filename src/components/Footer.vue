@@ -22,6 +22,7 @@ export default {
 .footer{
   background-color: var(--color-background-footer);
   color: var(--color-text-light);
+  position: relative;
 }
 
 .author-name{
