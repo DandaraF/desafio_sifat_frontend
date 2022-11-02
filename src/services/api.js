@@ -8,8 +8,7 @@ export default {
     return http.get();
   },
   filter: (filter_field, filter_value) => {
-    return http_filter.get("api?" + filter_field + "=" + filter_value);
-    // return http_filter.get(`api?${filter_field}=${filter_value}`);
+    return http_filter.get(`api?${filter_field}=${filter_value}`);
   },
   post: (postagem) => {
     return http.post(postagem.postagem_id, postagem);

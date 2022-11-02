@@ -25,7 +25,7 @@
 
 
       <div id="container-related">
-        <Related/>
+        <Related />
       </div>
 
     </div>
@@ -47,6 +47,7 @@ export default {
   data() {
     return {
       id: '',
+      categoria: '',
       postagem: {
         postagem_id: '',
         titulo : '',
@@ -61,8 +62,10 @@ export default {
   },
   mounted() {
     this.id = this.$route.params.postagem_id
-    console.log('id', this.id)
     this.listar_dados()
+
+    this.categoria = this.postagem.categoria
+
   },
 
   methods: {

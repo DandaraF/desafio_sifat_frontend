@@ -3,7 +3,7 @@
       <div v-for="postagem in postagens" class="card-related">
         <img :src="postagem.imagem" class="img-related" alt="imagem postagem" />
         
-        <div class="category">Filmes</div>
+        <div class="category">{{postagem.categoria}}</div>
 
         <div class="description">
             <p class="title">Overlord I, II, III e IV</p>
@@ -32,16 +32,9 @@ import api from '@/services/api';
 
 export default {
   name: "Related",
-  props: {
-    categoria: String,
-    id: String
-  },
+
   data() {
     return {
-      categoria: '--',
-      filter_field:'Categoria',
-      filter_value: '',
-
       postagem: {
         postagem_id: '',
         autor: '',
@@ -52,19 +45,19 @@ export default {
         data_criacao : null,
         curtidas: null    
       },
-      postagens:[]
+      postagens: [],
+      filter_field: 'categoria',
+      filter_value: ''
 
     }
   },
   mounted() {
+    this.filter_value = this.$route.params.categoria
     this.listar_relacionadas()
-    console.log('postagem', this.postagem)
   },
   methods: {
-
     listar_relacionadas() {
-      // postagem.filter_value = postagem.categoria 
-      api.filter(this.filter_field, "Ação").then(response => {
+      api.filter(this.filter_field, this.filter_value).then((response) => {
         this.postagens = response.data
       })
     }
