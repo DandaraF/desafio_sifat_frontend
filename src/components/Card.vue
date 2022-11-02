@@ -5,7 +5,7 @@
         <div v-for="postagem in postagens" class="col card-info" >
             <div class="card h-100 shadow-sm">
               
-               <img @click="$router.push('detalhes')" :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
+               <img @click="irDetalhes(postagem.postagem_id)" :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
                <div class="card-body">
 
                   <div class="clearfix mb-3 "> 
@@ -17,7 +17,7 @@
                   </div>
                   <p class="category">{{ postagem.categoria }}</p>
                   <h5 class="card-title">{{ postagem.titulo }}</h5>
-                  <p @click="$router.push('detalhes')" class="card-text" > {{ postagem.texto }}</p>
+                  <p @click="irDetalhes(postagem.postagem_id)" class="card-text" > {{ postagem.texto }}</p>
                </div>
             </div>
          </div>
@@ -58,6 +58,11 @@ export default {
       postagem.curtidas = postagem.curtidas + 1
       api.put(postagem).then(() => {
        })
+    },
+
+    irDetalhes(id) {
+      this.$router.push({ name: "detalhes", params: { postagem_id: id } })
+      console.log('ver detalhes', id)
     }
   }
 }
@@ -81,6 +86,11 @@ export default {
 .card-text{
   color: var(--color-text-normal);
   cursor: pointer;
+  display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
 .card-img-top{

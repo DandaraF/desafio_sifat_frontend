@@ -2,23 +2,21 @@
   <main>
   <div id="container">
     <div id="container-content">
-      <h2 class="title">Attack on Titans</h2>
+      <h2 class="title">{{postagem.titulo}}</h2>
 
       <div class="content-creator">
-        <p class="creator">Fernanda Novais - </p>
-        <p class="data_create">2022-10-31</p>
+        <p class="creator">{{postagem.autor}} - </p>
+        <p class="data_create">{{postagem.data_criacao}}</p>
       </div>
 
       <hr/>
 
-      <img src="https://picsum.photos/200/300?grayscale" class="image-post" alt="imagem postagem" />
+      <img :src="postagem.imagem" class="image-post" alt="imagem postagem" />
       
       <div id="datasheet">
-        <h4 class="autor-datasheet">Gustavo das nuvens</h4>
         <div class="data-anime">
-          <p class="text-description">
-            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </p>
+          <p class="text-description">{{postagem.texto}}  </p>
+          
           </div>
       </div>
 
@@ -28,7 +26,6 @@
 
       <div id="container-related">
         <Related/>
-
       </div>
 
     </div>
@@ -40,12 +37,43 @@
 
 <script>
 
+import api from "@/services/api"
 import Related from "../components/Related.vue"
 export default {
   name: 'DetalhesView',
   components: {
     Related
-  }
+  },
+  data() {
+    return {
+      id: '',
+      postagem: {
+        postagem_id: '',
+        titulo : '',
+        texto : '',
+        imagem : '',
+        categoria: '',
+        autor: '',
+        data_criacao : null,
+        curtidas: null
+      }
+    }
+  },
+  mounted() {
+    this.id = this.$route.params.postagem_id
+    console.log('id', this.id)
+    this.listar_dados()
+  },
+
+  methods: {
+    listar_dados() {
+      api.get(this.id).then((response) => {
+        this.postagem = response.data
+      })
+    }
+  },
+
+
 }
 
 </script>
@@ -54,8 +82,8 @@ export default {
 
 main{
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
@@ -63,8 +91,7 @@ main{
 
 #container{
   display: flex;
-  width: 60%;
-  margin: 10px 0 10px 6%;
+  width: 80%;
   height: 100%;
   padding: 10px;
   height: 100%;
