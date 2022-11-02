@@ -26,7 +26,6 @@
 
 <script>
 import api from '@/services/api';
-import { tSExpressionWithTypeArguments } from '@babel/types';
 
 export default {
   name: "Related",
@@ -71,9 +70,7 @@ export default {
         }
       })
     }
-  },
-
-
+  }
 
 }
 

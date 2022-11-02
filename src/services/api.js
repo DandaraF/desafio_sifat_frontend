@@ -16,7 +16,7 @@ export default {
   put: (postagem) => {
     return http.put(postagem.postagem_id, postagem);
   },
-  delete: (postagem) => {
-    return http.delete(postagem.postagem_id, { data: postagem });
+  delete: (postagem_id) => {
+    return http.delete(postagem_id);
   },
 };
