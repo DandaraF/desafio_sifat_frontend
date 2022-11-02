@@ -12,6 +12,12 @@
       <hr/>
 
       <img :src="postagem.imagem" class="image-post" alt="imagem postagem" />
+      <div class="session-like">
+        <img @click="atualizar_curtidas(postagem)" src="../assets/images/like.png" class="image-like-post"  alt="curtir"  > 
+         {{ postagem.curtidas }}
+      </div>
+     
+                  
       
       <div id="datasheet">
         <div class="data-anime">
@@ -73,7 +79,12 @@ export default {
       api.get(this.id).then((response) => {
         this.postagem = response.data
       })
-    }
+    },
+    atualizar_curtidas(postagem) {
+      postagem.curtidas = postagem.curtidas + 1
+      api.put(postagem).then(() => {
+       })
+    },
   },
 
 
@@ -111,6 +122,20 @@ main{
   }
 
 }
+.image-like-post{
+  height: 22px;
+  width: 24px;
+  cursor: pointer;
+}
+.session-like{
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  color: var(--color-text-dark);
+  gap:5px;
+}
+
 .title{
   text-align: center;
 }

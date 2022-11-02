@@ -2,22 +2,22 @@
   <main >
    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-        <div v-for="postagem in postagens" class="col card-info" >
+        <div @click="irDetalhes(postagem)" v-for="postagem in postagens" class="col card-info"  >
             <div class="card h-100 shadow-sm">
               
-               <img @click="irDetalhes(postagem)" :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
+               <img :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
                <div class="card-body">
 
                   <div class="clearfix mb-3 "> 
                     <span class="float-left price-hp data_create">{{ postagem.data_criacao }}</span> 
                     <div id="likes">
-                      <img @click="atualizar_curtidas(postagem)" src="../assets/images/like.png" class="image-like-post"  alt="curtir"  > 
+                      <img src="../assets/images/like.png" class="image-like-post"  alt="curtir"  > 
                       {{ postagem.curtidas }}
                     </div>
                   </div>
                   <p class="category">{{ postagem.categoria }}</p>
                   <h5 class="card-title">{{ postagem.titulo }}</h5>
-                  <p @click="irDetalhes(postagem)" class="card-text" > {{ postagem.texto }}</p>
+                  <p class="card-text" > {{ postagem.texto }}</p>
                </div>
             </div>
          </div>
@@ -54,11 +54,6 @@ export default {
         this.postagens = response.data
       })
     },
-    atualizar_curtidas(postagem) {
-      postagem.curtidas = postagem.curtidas + 1
-      api.put(postagem).then(() => {
-       })
-    },
 
     irDetalhes(postagem) {
       this.$router.push({
@@ -68,7 +63,6 @@ export default {
           categoria: postagem.categoria
         }
       })
-      console.log('ver detalhes', id)
     }
   }
 }
@@ -82,6 +76,10 @@ export default {
   cursor: pointer;
 }
 
+.card-info{
+  cursor: pointer;
+
+}
 .data_create{
   color: #BEBEBE;
   width: 50%;
@@ -91,7 +89,6 @@ export default {
 }
 .card-text{
   color: var(--color-text-normal);
-  cursor: pointer;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -102,7 +99,6 @@ export default {
 .card-img-top{
   max-height: 250px;
   object-fit: cover;
-  cursor: pointer;
 }
 
 .clearfix{
