@@ -23,6 +23,7 @@ main{
   flex-direction: column;
   justify-content: center;
   padding: 0 10px ;
+  box-sizing: border-box;
 }
 
 </style>

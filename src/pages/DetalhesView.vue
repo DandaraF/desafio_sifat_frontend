@@ -8,7 +8,6 @@
         <p class="creator">
           <img src="../assets/images/autor.png" class="icon"  alt="nome autor" /> 
           {{postagem.autor}}
-
           <img src="../assets/images/calendar.png" class="icon"  alt="data de criação" />
            {{postagem.data_criacao}}</p>
       </div>
@@ -27,13 +26,13 @@
           <img @click="atualizar_curtidas(postagem)" src="../assets/images/like.png" class="image-like-post"  alt="curtir"/> 
           {{ postagem.curtidas }}
         </div>
-
       </div>
-          <p class="text-description">{{postagem.texto}} </p>
+
+      <div class="text-description">{{postagem.texto}} </div>
 
       <hr/>
       
-      <h3 class="title-related">Leia mais</h3>
+      <h3 class="title-related">Relacionadas</h3>
 
       <div id="container-related">
         <Related />
@@ -50,7 +49,7 @@
         <p>Tem certeza que deseja excluir essa postagem?</p>
 
         <div class="container-btn">
-          <button @click="fechar_modal" class="btn btn-cancelar">Cancelar</button>
+          <button @click="fechar_modal" @click.cl class="btn btn-cancelar">Cancelar</button>
           <button @click="excluir_postagem(postagem.postagem_id)" class="btn btn-excluir">Excluir</button>
         </div>
       </div>
@@ -81,7 +80,6 @@
 </div>
 
 </template>
-
 
 <script>
 
@@ -114,7 +112,6 @@ export default {
     this.id = this.$route.params.postagem_id
     this.listar_dados()
     this.categoria = this.postagem.categoria
-
   },
 
   methods: {
@@ -138,9 +135,7 @@ export default {
       api.put(postagem).then(() => {
         this.fechar_modal()   
       })
-
     },
-
     abrir_modal_editar() {
       this.editar = true
     },
@@ -151,8 +146,7 @@ export default {
       this.editar = false
       this.excluir = false
       this.listar_dados()
-    }
-    
+    },
   },
 
 
@@ -161,125 +155,6 @@ export default {
 </script>
 
 <style scoped>
-/* ------------------MODAL EDITAR ------------------ */
-.container-editar{
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(226, 223, 223);
-  -webkit-box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91); 
-  box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91);
-  padding: 20px;
-  border-radius: 4px;
-  gap:5px;
-  margin-top: 30px;
-  width: 750px;
-}
-input{
-  border-radius: 4px;
-  padding: 4px;
-  outline: none;
-  border: 1px solid rgb(187, 187, 187);
-}
-textarea{
-  width: 100%;
-  resize: none;
-  outline: none;
-  border-radius: 4px;
-  border: 1px solid rgb(187, 187, 187);
-  padding: 4px;
-}
-
-/* ---------------MODAL EXCLUIR ------------------ */
-.model-modal{
-  top:0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  height: 100vh;
-  position: fixed;
-  z-index: 99;
-}
-.caracteres{
-  text-align: right;
-}
-.container-btn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap:15px;
-}
-
-
-.container-modal{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.container-excluir{
-  margin-top: 40px;
-  padding: 30px;
-}
-
-.content-modal-excluir{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: rgba(228, 228, 228, 0.897);
-  -webkit-box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91); 
-  box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91);
-  padding: 20px;
-  border-radius: 4px;
-}
-
-.btn{
-	border-radius:5px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-  width: 100px;
-	text-decoration:none;
-}
-
-.btn-excluir{
-	box-shadow:inset 0px 1px 3px 0px #91b8b3;
-	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-	background-color:#768d87;
-	text-shadow:0px -1px 0px #2b665e;
-	border:1px solid #566963;
-}
-
-.btn-excluir:hover{
-	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-	background-color:#6c7c7c;
-}
-
-.btn-cancelar{
-  box-shadow:inset 0px 1px 3px 0px #944444;
-	background:linear-gradient(to bottom, #cf6363 5%, #8f0606 100%);
-	background-color:#cf6363;
-  border:1px solid #b50909;
-  text-shadow:0px -1px 0px #991414
-}
-
-.btn-cancelar:hover {
-	background:linear-gradient(to bottom, #8f0606 5%, #cf6363 100%);
-	background-color:#8f0606;
-}
-
-.btn:active {
-	position:relative;
-	top:1px;
-}
-
-
-/* ----------------------------------------- */
-
 
 main{
   display: flex;
@@ -290,7 +165,6 @@ main{
   box-sizing: border-box;
 }
 
-
 #container{
   display: flex;
   width: 80%;
@@ -299,29 +173,24 @@ main{
   height: 100%;
   background-color: var(--color-background); 
 }
-@media(max-width: 900px){
-  .container-editar{
-    width: 650px;
-  }
+
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
-@media(max-width:767px){
-  main{
-    justify-content: center;
-  }
-  #container{
-    width: 100%;
-    margin: 10px 0;
-  }
-  textarea{
-  min-width: 300px;
-  }
-  .container-editar{
-    width: 330px;
-  }
-  .content-info-post{
-    margin-bottom: 0;
-  }
+
+#container-detalhes{
+  display: flex;
+  width: 80%;
+  height: 100%;
+  background-color: var(--color-background); 
+  box-sizing: border-box;
 }
+
 #container-content{
   display: flex;
   flex-direction: column;
@@ -344,18 +213,19 @@ main{
    font-style: oblique;
    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
 .like{
   display: flex;
   gap:5px;
   padding-right: 10px;
 }
-
 .title-related{
   font-weight: 600;
 }
 .text-description{
+  display: flex;
+  flex-wrap: wrap;
   text-indent: 2rem;
+  box-sizing: border-box;
 }
 .title{
   text-align: center;
@@ -423,5 +293,157 @@ h3{
   font-size: 24px;
   font-weight: 500;
 }
+
+/* ------------------MODAL EDITAR ------------------ */
+.container-editar{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(226, 223, 223);
+  -webkit-box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91); 
+  box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91);
+  padding: 20px;
+  border-radius: 4px;
+  gap:5px;
+  margin-top: 30px;
+  width: 750px;
+}
+input{
+  border-radius: 4px;
+  padding: 4px;
+  outline: none;
+  border: 1px solid rgb(187, 187, 187);
+}
+textarea{
+  width: auto;
+  resize: none;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid rgb(187, 187, 187);
+  padding: 4px;
+}
+
+/* ---------------MODAL EXCLUIR ------------------ */
+.model-modal{
+  top:0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  position: fixed;
+  z-index: 99;
+}
+.container-modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding:10px;
+
+}
+
+.caracteres{
+  text-align: right;
+}
+.container-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:15px;
+}
+
+.container-excluir{
+  margin-top: 40px;
+  padding: 30px;
+}
+
+.content-modal-excluir{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(228, 228, 228, 0.897);
+  -webkit-box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91); 
+  box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.btn{
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+  width: 100px;
+	text-decoration:none;
+}
+
+.btn-excluir{
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	text-shadow:0px -1px 0px #2b665e;
+	border:1px solid #566963;
+}
+
+.btn-excluir:hover{
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+
+.btn-cancelar{
+  box-shadow:inset 0px 1px 3px 0px #944444;
+	background:linear-gradient(to bottom, #cf6363 5%, #8f0606 100%);
+	background-color:#cf6363;
+  border:1px solid #b50909;
+  text-shadow:0px -1px 0px #991414
+}
+
+.btn-cancelar:hover {
+	background:linear-gradient(to bottom, #8f0606 5%, #cf6363 100%);
+	background-color:#8f0606;
+}
+
+.btn:active {
+	position:relative;
+	top:1px;
+}
+/* ----------------------------------------- */
+
+@media(max-width: 900px){
+  .container-editar{
+    width: 650px;
+  }
+}
+@media(max-width: 900px){
+  .container-editar{
+    width: 650px;
+  }
+}
+@media(max-width:767px){
+  main{
+    justify-content: center;
+  }
+  #container{
+    width: 100%;
+    margin: 10px 0;
+  }
+  textarea{
+  width: 355px;
+  }
+  .container-editar{
+    width: 320px;
+
+  }
+  .content-info-post{
+    margin-bottom: 0;
+  }
+
+}
+
+
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="container-related">
-      <div v-for="postagem in postagens" class="card-related" @click="irDetalhes(postagem)">
+      <div v-for="postagem in postagens" class="card-related">
         <img :src="postagem.imagem" class="img-related" alt="imagem postagem" />
         
         <div class="category">{{postagem.categoria}}</div>
@@ -26,6 +26,8 @@
 
 <script>
 import api from '@/services/api';
+import { tsThisType } from '@babel/types';
+import { objectToString } from '@vue/shared';
 
 export default {
   name: "Related",
@@ -45,7 +47,8 @@ export default {
       postagens: [],
       id:'',
       filter_field: 'categoria',
-      filter_value: ''
+      filter_value: '',
+      postagens_filtradas: []
 
     }
   },
@@ -54,10 +57,14 @@ export default {
     this.id = this.$route.params.postagem_id
     this.listar_relacionadas()
   },
+
   methods: {
     listar_relacionadas() {
-      api.filter(this.filter_field, this.filter_value).then((response) => {
+      api.filter(this.filter_field, this.filter_value).then((response) => {  
         this.postagens = response.data
+        this.postagens_filtradas = this.postagens.filter(element => element.postagem_id !== this.id)
+        this.postagens = this.postagens_filtradas
+
 
       })
     },
@@ -69,7 +76,9 @@ export default {
           categoria: postagem.categoria
         }
       })
-    }
+    },
+
+    
   }
 
 }
@@ -81,19 +90,19 @@ export default {
 .container-related{
   display: grid ;
   grid-template-columns: 1fr 1fr 1fr;
-  width: auto;
   justify-content: center;
   gap: 15px;
 }
 
-/* @media(max-width: 956px){
-  .container-related{
-    grid-template-columns: 1fr 1fr;
-  }
-} */
 @media(max-width: 768px){
   .container-related{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; 
+  }
+}
+
+@media(max-width: 620px){
+  .container-related{
+    grid-template-columns: 1fr;
   }
 }
 
