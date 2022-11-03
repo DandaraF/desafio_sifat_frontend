@@ -4,7 +4,7 @@
   <main>
   <div id="container">
     <div id="container-content">
-      <h2 class="title">{{postagem.titulo}}</h2>
+      <h1 class="title">{{postagem.titulo}}</h1>
 
       <div class="content-info-post">
         <p class="creator">
@@ -34,8 +34,8 @@
           <p class="text-description">{{postagem.texto}} </p>
 
       <hr/>
-
-      <h3 class="title-related">Relacionadas</h3>
+      
+      <h3 class="title-related">Leia mais</h3>
 
       <div id="container-related">
         <Related />
@@ -234,7 +234,7 @@ textarea{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: rgb(226, 223, 223);
+  background-color: rgba(228, 228, 228, 0.897);
   -webkit-box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91); 
   box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91);
   padding: 20px;
@@ -349,6 +349,9 @@ main{
   padding-right: 10px;
 }
 
+.title-related{
+  font-weight: 600;
+}
 .text-description{
   text-indent: 2rem;
 }

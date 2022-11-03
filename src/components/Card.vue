@@ -74,7 +74,9 @@ export default {
 .image-like-post{
   height: 22px;
   cursor: pointer;
+
 }
+
 
 .card-info{
   cursor: pointer;

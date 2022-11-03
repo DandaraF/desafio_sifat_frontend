@@ -1,7 +1,6 @@
 <template>  
 <main>
   <Card/>
-
 </main>
 </template>
 
@@ -21,7 +20,9 @@ export default {
 <style scoped> 
 main{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 0 10px ;
 }
+
 </style>
