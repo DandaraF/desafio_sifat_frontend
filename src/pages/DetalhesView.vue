@@ -7,22 +7,30 @@
       <h2 class="title">{{postagem.titulo}}</h2>
 
       <div class="content-info-post">
-        <p class="creator">{{postagem.autor}} - {{postagem.data_criacao}}</p>
+        <p class="creator">
+          <img src="../assets/images/autor.png" class="icon"  alt="nome autor" /> 
+          {{postagem.autor}}
+
+          <img src="../assets/images/calendar.png" class="icon"  alt="data de criação" />
+           {{postagem.data_criacao}}</p>
       </div>
 
       <div class="action-painel">
-          <img @click="abrir_modal_editar" src="../assets/images/edit.png" class="image-action"  alt="alterar postagem" />
-          <img @click="abrir_modal_excluir" src="../assets/images/remove.png" class="image-action"  alt="remover postagem" />
+          <img @click="abrir_modal_editar" title="Editar postagem" src="../assets/images/edit.png" class="image-action"  alt="alterar postagem" />
+          <img @click="abrir_modal_excluir" title="Excluir postagem" src="../assets/images/remove.png" class="image-action"  alt="remover postagem" />
       </div>
 
       <hr/>
 
       <img :src="postagem.imagem" class="image-post" alt="imagem postagem" />
-      <div class="session-like">
-        <img @click="atualizar_curtidas(postagem)" src="../assets/images/like.png" class="image-like-post"  alt="curtir"/> 
-         {{ postagem.curtidas }}
+      <div class="session-like-category">
+        <p class="text-category">{{postagem.categoria}}</p>
+        <div class="like">
+          <img @click="atualizar_curtidas(postagem)" src="../assets/images/like.png" class="image-like-post"  alt="curtir"/> 
+          {{ postagem.curtidas }}
+        </div>
+
       </div>
-      
           <p class="text-description">{{postagem.texto}} </p>
 
       <hr/>
@@ -64,7 +72,8 @@
       <label>Url da imagem:</label>
       <input type="text"  v-model="postagem.imagem" >
       <label>Texto:</label>
-      <textarea rows="8" v-model="postagem.texto" ></textarea>
+      <textarea rows="8" v-model="postagem.texto" maxlength="3000"></textarea>
+      <p class="caracteres">Máx caracteres: 3000</p>
       <div class="container-btn">
           <button @click="fechar_modal" class="btn btn-cancelar">Cancelar</button>
           <button @click="atualizar_postagem(postagem)" class="btn btn-excluir">Atualizar</button>
@@ -131,13 +140,13 @@ export default {
 
       api.put(postagem).then(() => {
         this.fechar_modal()
+        
       })
 
     },
 
     abrir_modal_editar() {
       this.editar = true
-      console.log('abri editar')
     },
     abrir_modal_excluir() {
       this.excluir = true
@@ -145,6 +154,7 @@ export default {
     fechar_modal() {
       this.editar = false
       this.excluir = false
+      this.listar_dados()
     }
     
   },
@@ -193,6 +203,9 @@ textarea{
   height: 100vh;
   position: fixed;
   z-index: 99;
+}
+.caracteres{
+  text-align: right;
 }
 .container-btn{
   display: flex;
@@ -317,17 +330,39 @@ main{
   width: 24px;
   cursor: pointer;
 }
-.session-like{
+.session-like-category{
   margin-top: 5px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   font-size: 18px;
   color: var(--color-text-dark);
-  gap:5px;
+}
+.text-category{
+   color: var(--color-text-normal);
+   font-style: oblique;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.like{
+  display: flex;
+  gap:5px;
+  padding-right: 10px;
+}
+
+.text-description{
+  text-indent: 2rem;
+}
 .title{
   text-align: center;
+}
+
+
+
+.input-title{
+  font-size: 26px;
+  text-align: center;
+  font-weight: 600;
+  border: none;
 }
 
 .content-info-post{
@@ -340,9 +375,15 @@ main{
 }
 
 .creator{
+  display: flex;
+  align-items: center;
   text-align: center;
 }
 
+.icon{
+  margin: 0 3px 0 10px;
+  width: 18px;
+}
 .action-painel{
   display: flex;
   align-items: center;
