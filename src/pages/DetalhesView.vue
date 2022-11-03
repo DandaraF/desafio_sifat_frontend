@@ -37,19 +37,41 @@
   </div>
   
 </main>
-
-<div id="modal-excluir" v-if="excluir">
-    <div class="container-modal">
+<!-- --------------Modal Excluir ------------------ -->
+<div class="model-modal"  v-if="excluir" >
+    <div class="container-modal container-excluir">
       <div class="content-modal-excluir">
         <p>Tem certeza que deseja excluir essa postagem?</p>
 
-        <div class="container-btn-excluir">
+        <div class="container-btn">
           <button @click="fechar_modal" class="btn btn-cancelar">Cancelar</button>
           <button @click="excluir_postagem(postagem.postagem_id)" class="btn btn-excluir">Excluir</button>
         </div>
       </div>
     </div>
   </div>
+<!-- --------------Modal Editar ------------------ -->
+<div class="model-modal" v-if="editar" >
+  <div class="container-modal ">
+
+    <div class="container-editar">
+      <label>Título:</label>
+      <input type="text" v-model="postagem.titulo" >
+      <label>Categoria:</label>
+      <input type="text"  v-model="postagem.categoria" >
+      <label>Autor:</label>
+      <input type="text"  v-model="postagem.autor" >
+      <label>Url da imagem:</label>
+      <input type="text"  v-model="postagem.imagem" >
+      <label>Texto:</label>
+      <textarea rows="8" v-model="postagem.texto" ></textarea>
+      <div class="container-btn">
+          <button @click="fechar_modal" class="btn btn-cancelar">Cancelar</button>
+          <button @click="atualizar_postagem(postagem)" class="btn btn-excluir">Atualizar</button>
+        </div>
+    </div>
+  </div>
+</div>
 
 </template>
 
@@ -104,10 +126,18 @@ export default {
         this.$router.push({name: "home"})
       })
     },
+    atualizar_postagem(postagem) {
+      this.postagem = postagem
 
+      api.put(postagem).then(() => {
+        this.fechar_modal()
+      })
+
+    },
 
     abrir_modal_editar() {
       this.editar = true
+      console.log('abri editar')
     },
     abrir_modal_excluir() {
       this.excluir = true
@@ -125,8 +155,38 @@ export default {
 </script>
 
 <style scoped>
+/* ------------------MODAL EDITAR ------------------ */
+.container-editar{
+  display: flex;
+  /* align-items: center;
+  justify-content: flex-start; */
+  flex-direction: column;
+  background-color: rgb(226, 223, 223);
+  -webkit-box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91); 
+  box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91);
+  padding: 20px;
+  border-radius: 4px;
+  gap:5px;
+  margin-top: 30px;
+  width: 750px;
+}
+input{
+  border-radius: 4px;
+  padding: 4px;
+  outline: none;
+  border: 1px solid rgb(187, 187, 187);
+}
+textarea{
+  width: 100%;
+  resize: none;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid rgb(187, 187, 187);
+  padding: 4px;
+}
+
 /* ---------------MODAL EXCLUIR ------------------ */
-#modal-excluir{
+.model-modal{
   top:0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -134,13 +194,26 @@ export default {
   position: fixed;
   z-index: 99;
 }
+.container-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:15px;
+}
+
 
 .container-modal{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70%;
+  margin-top: 10px;
+  /* height: 70%; */
   width: 100%;
+}
+
+.container-excluir{
+  margin-top: 40px;
+  padding: 30px;
 }
 
 .content-modal-excluir{
@@ -196,10 +269,6 @@ export default {
 	top:1px;
 }
 
-.container-btn-excluir{
-  display: flex;
-  gap:5px;
-}
 
 /* ----------------------------------------- */
 
@@ -221,7 +290,11 @@ main{
   height: 100%;
   background-color: var(--color-background); 
 }
-
+@media(max-width: 900px){
+  .container-editar{
+    width: 650px;
+  }
+}
 @media(max-width:767px){
   main{
     justify-content: center;
@@ -230,7 +303,9 @@ main{
     width: 100%;
     margin: 10px 0;
   }
-
+  textarea{
+  min-width: 320px;
+  }
 }
 #container-content{
   display: flex;
