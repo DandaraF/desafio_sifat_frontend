@@ -11,7 +11,7 @@ export default {
     return http_filter.get(`api?${filter_field}=${filter_value}`);
   },
   post: (postagem) => {
-    return http.post(postagem.postagem_id, postagem);
+    return http.post("", postagem);
   },
   put: (postagem) => {
     return http.put(postagem.postagem_id, postagem);

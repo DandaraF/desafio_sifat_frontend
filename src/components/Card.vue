@@ -5,7 +5,7 @@
         <div @click="irDetalhes(postagem)" v-for="postagem in postagens" class="col card-info"  >
             <div class="card h-100 shadow-sm">
               
-               <img :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
+               <img :src="postagem.imagem" class="card-img-top" alt="imagem post" > 
                <div class="card-body">
 
                   <div class="clearfix mb-3 "> 

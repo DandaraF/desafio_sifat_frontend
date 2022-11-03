@@ -1,6 +1,4 @@
 <template>
-
- 
   <main>
   <div id="container">
     <div id="container-content">
@@ -72,7 +70,7 @@
       <label>Url da imagem:</label>
       <input type="text"  v-model="postagem.imagem" >
       <label>Texto:</label>
-      <textarea rows="8" v-model="postagem.texto" maxlength="3000"></textarea>
+      <textarea rows="7" v-model="postagem.texto" maxlength="3000"></textarea>
       <p class="caracteres">Máx caracteres: 3000</p>
       <div class="container-btn">
           <button @click="fechar_modal" class="btn btn-cancelar">Cancelar</button>
@@ -115,7 +113,6 @@ export default {
   mounted() {
     this.id = this.$route.params.postagem_id
     this.listar_dados()
-
     this.categoria = this.postagem.categoria
 
   },
@@ -139,8 +136,7 @@ export default {
       this.postagem = postagem
 
       api.put(postagem).then(() => {
-        this.fechar_modal()
-        
+        this.fechar_modal()   
       })
 
     },
@@ -168,8 +164,6 @@ export default {
 /* ------------------MODAL EDITAR ------------------ */
 .container-editar{
   display: flex;
-  /* align-items: center;
-  justify-content: flex-start; */
   flex-direction: column;
   background-color: rgb(226, 223, 223);
   -webkit-box-shadow: 2px 3px 2px 1px rgba(255,255,255,0.91); 
@@ -220,7 +214,6 @@ textarea{
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  /* height: 70%; */
   width: 100%;
 }
 
@@ -252,7 +245,8 @@ textarea{
   width: 100px;
 	text-decoration:none;
 }
-.btn-cancelar{
+
+.btn-excluir{
 	box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
 	background-color:#768d87;
@@ -260,8 +254,12 @@ textarea{
 	border:1px solid #566963;
 }
 
+.btn-excluir:hover{
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
 
-.btn-excluir{
+.btn-cancelar{
   box-shadow:inset 0px 1px 3px 0px #944444;
 	background:linear-gradient(to bottom, #cf6363 5%, #8f0606 100%);
 	background-color:#cf6363;
@@ -269,14 +267,11 @@ textarea{
   text-shadow:0px -1px 0px #991414
 }
 
-.btn-cancelar:hover{
-	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-	background-color:#6c7c7c;
-}
-.btn-excluir:hover {
+.btn-cancelar:hover {
 	background:linear-gradient(to bottom, #8f0606 5%, #cf6363 100%);
 	background-color:#8f0606;
 }
+
 .btn:active {
 	position:relative;
 	top:1px;
@@ -292,6 +287,7 @@ main{
   justify-content: center;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -317,7 +313,13 @@ main{
     margin: 10px 0;
   }
   textarea{
-  min-width: 320px;
+  min-width: 300px;
+  }
+  .container-editar{
+    width: 330px;
+  }
+  .content-info-post{
+    margin-bottom: 0;
   }
 }
 #container-content{
@@ -359,8 +361,6 @@ main{
   text-align: center;
 }
 
-
-
 .input-title{
   font-size: 26px;
   text-align: center;
@@ -369,12 +369,12 @@ main{
 }
 
 .content-info-post{
- display: flex;
- align-items: center;
- justify-content: center;
- gap: 10px;
- margin-bottom: -20px;
- color: var(--color-text-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: -20px;
+  color: var(--color-text-normal);
 }
 
 .creator{
@@ -401,7 +401,6 @@ main{
   width: auto;
   cursor: pointer;
 }
-
 
 .image-post{
   width: 100%;
