@@ -11,19 +11,18 @@
 
 ## Como executar
 
-- Clone este repositório
-
+* Clone este repositório
   ```console
    git clone https://github.com/DandaraF/desafio_sifat_frontend.git
   ```
 
-- Entre dentro da pasta do projeto (desafio_sifat_backend)
-
-- Instalar o npm:
+* Entre dentro da pasta do projeto (desafio_sifat_backend)
+  
+* Instalar o npm:
   ```console
   npm install
   ```
-- Starte o projeto:
+* Starte o projeto:
   ```console
   npm run serve
   ```
