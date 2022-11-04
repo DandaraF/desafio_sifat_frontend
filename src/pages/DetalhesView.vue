@@ -42,7 +42,7 @@
   </div>
   
 </main>
-<!-- --------------Modal Excluir ------------------ -->
+
 <div class="model-modal"  v-if="excluir" >
     <div class="container-modal container-excluir">
       <div class="content-modal-excluir">
@@ -55,7 +55,8 @@
       </div>
     </div>
   </div>
-<!-- --------------Modal Editar ------------------ -->
+
+
 <div class="model-modal" v-if="editar" >
   <div class="container-modal ">
 
@@ -438,7 +439,5 @@ textarea{
   }
 
 }
-
-
 
 </style>
