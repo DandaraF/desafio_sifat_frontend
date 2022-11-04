@@ -7,6 +7,7 @@
 - Vuejs3
 - Axios
 - Bootstrap
+- CSS
 
 ## Como executar
 
