@@ -1,7 +1,8 @@
 <template>  
 <main>
-  <Card/>
-
+  <div class="container">
+    <Card/>
+  </div>
 </main>
 </template>
 
@@ -21,7 +22,15 @@ export default {
 <style scoped> 
 main{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 0 10px ;
+  box-sizing: border-box;
 }
+
+.container{
+  width: 95%;
+
+}
+
 </style>

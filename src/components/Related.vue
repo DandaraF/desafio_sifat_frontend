@@ -1,6 +1,6 @@
 <template>
   <div class="container-related">
-      <div v-for="postagem in postagens" class="card-related" @click="irDetalhes(postagem)">
+      <div v-for="postagem in postagens" class="card-related">
         <img :src="postagem.imagem" class="img-related" alt="imagem postagem" />
         
         <div class="category">{{postagem.categoria}}</div>
@@ -17,6 +17,7 @@
               </div>
 
             </div>
+
             <p class="text-related">{{postagem.texto}}</p>
         </div>
       </div>
@@ -45,8 +46,8 @@ export default {
       postagens: [],
       id:'',
       filter_field: 'categoria',
-      filter_value: ''
-
+      filter_value: '',
+      postagens_filtradas: []
     }
   },
   mounted() {
@@ -54,11 +55,13 @@ export default {
     this.id = this.$route.params.postagem_id
     this.listar_relacionadas()
   },
+
   methods: {
     listar_relacionadas() {
-      api.filter(this.filter_field, this.filter_value).then((response) => {
+      api.filter(this.filter_field, this.filter_value).then((response) => {  
         this.postagens = response.data
-
+        this.postagens_filtradas = this.postagens.filter(element => element.postagem_id !== this.id)
+        this.postagens = this.postagens_filtradas
       })
     },
     irDetalhes(postagem) {
@@ -69,9 +72,8 @@ export default {
           categoria: postagem.categoria
         }
       })
-    }
+    } 
   }
-
 }
 
 </script>
@@ -81,22 +83,9 @@ export default {
 .container-related{
   display: grid ;
   grid-template-columns: 1fr 1fr 1fr;
-  width: auto;
   justify-content: center;
   gap: 15px;
 }
-
-/* @media(max-width: 956px){
-  .container-related{
-    grid-template-columns: 1fr 1fr;
-  }
-} */
-@media(max-width: 768px){
-  .container-related{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 
 .card-related{
   width: 300px;
@@ -106,7 +95,6 @@ export default {
 .description{
   padding: 10px 10px 0;
 }
-
 .category{
   text-align: center;
   background-color: var(--color-background-footer);
@@ -116,16 +104,13 @@ export default {
   font-style: italic;
   padding: 5px 0;
 }
-
 .title{
   font-weight: 600;
 }
 .img-related{
   height: 200px;
   width: 100%;
-  object-fit: cover;
 }
-
 .info{
   display: flex;
   width: 100%;
@@ -144,16 +129,22 @@ export default {
   width: 18px;
   height: 18px;
 }
-
 .text-related{
   display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-overflow: hidden;
-text-overflow: ellipsis;
-
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media(max-width: 768px){
+  .container-related{
+    grid-template-columns: 1fr 1fr; 
+  }
 }
 
-
-
+@media(max-width: 620px){
+  .container-related{
+    grid-template-columns: 1fr;
+  }
+}
 </style>

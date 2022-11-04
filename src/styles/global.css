@@ -1,6 +1,7 @@
 :root {
   --color-background:#F3F3F3;
   --color-background-nav:#2B3D50;
+  --color-background-nav-itens:#3c4a58;
   --color-background-footer:#2B3D50;
   --color-background-home:#344960;
   --color-text-light:#EDEDED;
@@ -32,6 +33,3 @@ a:hover{
   opacity: 0.8;
 }
 
-.container{
-  width: 90%;
-}

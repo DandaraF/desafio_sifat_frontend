@@ -5,7 +5,7 @@
         <div @click="irDetalhes(postagem)" v-for="postagem in postagens" class="col card-info"  >
             <div class="card h-100 shadow-sm">
               
-               <img :src="postagem.imagem" class="card-img-top" alt="imagem postagem" > 
+               <img :src="postagem.imagem" class="card-img-top" alt="imagem post" > 
                <div class="card-body">
 
                   <div class="clearfix mb-3 "> 
@@ -78,15 +78,17 @@ export default {
 
 .card-info{
   cursor: pointer;
-
 }
+
 .data_create{
   color: #BEBEBE;
   width: 50%;
 }
+
 .card-title{
   color: var(--color-text-title);
 }
+
 .card-text{
   color: var(--color-text-normal);
   display: -webkit-box;
@@ -98,7 +100,6 @@ export default {
 
 .card-img-top{
   max-height: 250px;
-  object-fit: cover;
 }
 
 .clearfix{
