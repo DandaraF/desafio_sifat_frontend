@@ -1,6 +1,8 @@
 <template>  
 <main>
-  <Card/>
+  <div class="container">
+    <Card/>
+  </div>
 </main>
 </template>
 
@@ -24,6 +26,11 @@ main{
   justify-content: center;
   padding: 0 10px ;
   box-sizing: border-box;
+}
+
+.container{
+  width: 95%;
+
 }
 
 </style>

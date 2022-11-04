@@ -74,21 +74,21 @@ export default {
 .image-like-post{
   height: 22px;
   cursor: pointer;
-
 }
-
 
 .card-info{
   cursor: pointer;
-
 }
+
 .data_create{
   color: #BEBEBE;
   width: 50%;
 }
+
 .card-title{
   color: var(--color-text-title);
 }
+
 .card-text{
   color: var(--color-text-normal);
   display: -webkit-box;
@@ -100,7 +100,6 @@ export default {
 
 .card-img-top{
   max-height: 250px;
-  object-fit: cover;
 }
 
 .clearfix{

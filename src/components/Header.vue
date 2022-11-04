@@ -189,6 +189,7 @@ input{
   padding: 4px;
   outline: none;
   border: 1px solid rgb(187, 187, 187);
+  text-transform: capitalize;
   
 }
 input textarea::placeholder{

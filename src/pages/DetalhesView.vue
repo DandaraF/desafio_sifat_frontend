@@ -67,7 +67,7 @@
       <label>Autor:</label>
       <input type="text"  v-model="postagem.autor" >
       <label>Url da imagem:</label>
-      <input type="text"  v-model="postagem.imagem" >
+      <input type="text" class="input-image"  v-model="postagem.imagem" >
       <label>Texto:</label>
       <textarea rows="7" v-model="postagem.texto" maxlength="3000"></textarea>
       <p class="caracteres">Máx caracteres: 3000</p>
@@ -148,7 +148,6 @@ export default {
       this.listar_dados()
     },
   },
-
 
 }
 
@@ -275,7 +274,6 @@ main{
 .image-post{
   width: 100%;
   max-height: 400px;
-  object-fit: cover;
 }
 
 #datasheet{
@@ -312,6 +310,10 @@ input{
   padding: 4px;
   outline: none;
   border: 1px solid rgb(187, 187, 187);
+  text-transform: capitalize;
+}
+.input-image{
+  text-transform: lowercase;
 }
 textarea{
   width: auto;
@@ -418,11 +420,6 @@ textarea{
     width: 650px;
   }
 }
-@media(max-width: 900px){
-  .container-editar{
-    width: 650px;
-  }
-}
 @media(max-width:767px){
   main{
     justify-content: center;
@@ -431,9 +428,7 @@ textarea{
     width: 100%;
     margin: 10px 0;
   }
-  textarea{
-  width: 355px;
-  }
+
   .container-editar{
     width: 320px;
 

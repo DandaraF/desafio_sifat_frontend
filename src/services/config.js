@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const http = axios.create({
-  baseURL: "http://127.0.0.1:8000/api",
+  baseURL: "https://dandarafonseca.pythonanywhere.com/api",
 });
 
 export const http_filter = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "https://dandarafonseca.pythonanywhere.com",
 });
